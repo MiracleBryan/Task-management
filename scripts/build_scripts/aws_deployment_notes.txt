@@ -1,0 +1,27 @@
+*** Important to include appspec.yml into your CodeBuild's artifact!
+The AppSpec file for an EC2/On-Premises deployment must be named appspec.yml or appspec.yaml, unless you are performing a local deployment. 
+
+*** Ensure that CodeDeploy agent is installed in Ubuntu EC2 instance:
+https://stackoverflow.com/questions/38195823/error-the-overall-deployment-failed-because-too-many-individual-instances-faile
+https://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-ubuntu.html
+
+CodeBuild will use the buildspec.yml to build the application.
+CodeDeploy will use AppSpec.yml to deploy the application to EC2.
+For this project, we used Sydney Server.
+Thus, the CodeDeploy agent install script is:
+https://aws-codedeploy-ap-southeast-2.s3.ap-southeast-2.amazonaws.com/latest/install
+
+Deployment Logging from EC2:
+tail -f /var/log/aws/codedeploy-agent/codedeploy-agent.log
+
+*** If create EC2 instance from scratch, create IAM role and attach to EC2 model.
+AWS Credentials for CodeDeploy on EC2:
+https://stackoverflow.com/questions/41997426/instanceagentpluginscodedeployplugincommandpoller-missing-credentials
+
+All deployed artifacts from CodeBuild will be in the /opt/codedeploy-agent/deployment-root/ folder.
+Check all your build artifacts there.
+
+Permissions to execute script in the destination deployment folder:
+https://stackoverflow.com/questions/33108309/aws-code-deploy-failing-scripts-due-to-permissions
+https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file.html#app-spec-ref-permissions
+https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-permissions.html

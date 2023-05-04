@@ -1,0 +1,22 @@
+# AWS CodeDeploy
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /task_management_app
+permissions:
+  - object: /task_management_app
+    pattern: "**"
+    owner: root
+    mode: 777
+    type:
+      - directory
+hooks:
+  BeforeInstall: 
+    - location: /scripts/build_scripts/aws_codedeploy_beforeinstall.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: /scripts/build_scripts/aws_codedeploy_start.sh
+      timeout: 500
+      runas: root

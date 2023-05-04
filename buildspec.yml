@@ -1,0 +1,40 @@
+# AWS CodeBuild
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      # NodeJS environment.
+      nodejs: 16
+  build:
+    commands:
+      # Build Frontend.
+      - echo Build Started
+      - cd frontend
+
+      # Install NPM Dependencies.
+      - npm install
+      - npm i -g @quasar/cli
+
+      # Build Frontend in Production.
+      - ENV="PRODUCTION"
+      - quasar build
+    post_build:
+      commands:
+        - echo Build Succeeded :)
+artifacts:
+  type: zip
+  files:
+    # Backend.
+    - run.py
+    - app.py
+    - config.py
+    - utility/*
+    - database/*
+    - api/*
+
+    # Frontend.
+    - frontend/dist/spa/**/*
+
+    # AppSpec for CodeDeploy.
+    - appspec.yml
+    - scripts/**/*

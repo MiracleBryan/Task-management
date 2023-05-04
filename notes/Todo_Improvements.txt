@@ -1,0 +1,8 @@
+## Suggested Improvements on the App ##
+
+~ Task dateline should not be set to a day in the past.
+~ Description editing should be single click, not doube.
+~ Description editing should be confirmed and closed with the enter key.
+~ Uppercase "Task" name in header.
+~ When multiple tasks are added and due date is null, editing task name is glitchy
+~ When you click the advanced_search_btn the icon should flip indicating you need to click the button again to minimize the window

@@ -1,0 +1,39 @@
+=== Notes For Demo 2 ===
+
+Past Changes:
++ Past Update Request by Jonathan:
+    ~ Registration now has a "Registered" notification when a user has been registered.
+    ~ Deleting a task requires a confirmation dialog now instead of instantly deleting.
+
+Sprint 2 Implementation:
++ Notifications:
+    ~ Notifications like connection request and connection are implemented with websockets.
+    ~ So, notification is pushed to the client.
++ Connection Request:
+    ~ Send a connection request to another user.
+    ~ Accept / delete connection request.
+    ~ Demo notification on sending a connection request. 
+        ~ Fail to find user, Connection request sent, Cannot connect to self, Cannot double send request.
+    ! If asked about where can we see the requests? It's in next sprint, when we can see other user's profile.
++ Connection:
+    ~ User can assign a task to an established connection.
+    ~ User can delete an established connection.
+        ~ Upon deleting an established connection, disconnected users cannot see the task which the user has just disconnected from.
+        ~ The other user which is currently just being unfriended by the other user can still see the tasks, 
+          but will not be able to update the task which is assigned previously by the disconnected user.
+          Attempt to do so will be notified with an update failure notification at the bottom right.
+        ~ Demo on two browser, delete an established connection, make sure task of just disconnected user cannot be seen.
+            ~ The other user will not be permitted to update the task and will be notified upon update failure.
+    ~ Deleting an established connection will ensure that tasks cannot be assigned to disconnected user.
+        ~ Demo on two browser, delete an established connection, make sure task cannot be assigned from user1 to user2.
++ Filters:
+    ~ Repositioned around the screen for better view. So, it doesn't block the task list.
+    ~ Toggle active searching to flip between search mode and normal view mode.
+    ~ Rule based search that allows user to aggregate rules on different columns.
+    ~ Supported rule aggregation is (And, Or).
+    ~ Different columns have different conditions constraint.
+        ~ Example, dates have "before" and "between" condition to filter before and between two dates.
++ Busyness:
+    ~ Added busyness visualization chart.
++ Dark Mode:
+    ~ Can refresh the page and the dark mode configuration will be persistent.
